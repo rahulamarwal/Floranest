@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.name }} - Floranest{% endblock %}
+
+{% block content %}
+<section class="container" style="padding: 4rem 0;">
+    <h1 style="margin-bottom: 1rem;">{{ category.name }}</h1>
+    <p style="color: var(--text-light); margin-bottom: 3rem;">{{ category.description }}</p>
+
+    {% if products %}
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            {% if product.image_url %}
+            <img src="{{ url_for('static', filename='uploads/' + product.image_url) }}" alt="{{ product.name }}" class="product-image">
+            {% else %}
+            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Default Product" class="product-image">
+            {% endif %}
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p class="product-price">₹{{ "%.2f"|format(product.price) }}</p>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-secondary" style="flex: 1; text-align: center; padding: 0.5rem;">Details</a>
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn" style="flex: 1; text-align: center; padding: 0.5rem;">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 4rem; background: white; border-radius: 1rem;">
+        <h3>No products in this category yet.</h3>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

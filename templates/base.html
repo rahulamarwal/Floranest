@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Floranest - Quality Agriculture Products{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo">FLORANEST</a>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                {% for category in categories %}
+                <a href="{{ url_for('category_products', category_id=category.id) }}">{{ category.name }}</a>
+                {% endfor %}
+                {% if current_user.is_authenticated %}
+                    {% if current_user.is_admin %}
+                    <a href="{{ url_for('admin_dashboard') }}">Admin</a>
+                    {% endif %}
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                {% endif %}
+                <a href="{{ url_for('view_cart') }}" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">{{ cart_count }}</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Floranest</h4>
+                    <p>Your one-stop shop for premium agriculture products. We bring the best of nature to your doorstep.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        {% for category in categories %}
+                        <li><a href="{{ url_for('category_products', category_id=category.id) }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; color: var(--text-light);">
+                &copy; 2026 Floranest. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-hide flash messages after 3 seconds
+        setTimeout(() => {
+            const flashes = document.querySelectorAll('.flash');
+            flashes.forEach(f => f.style.display = 'none');
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Add Product - Floranest{% endblock %}
+
+{% block content %}
+<section class="container" style="padding: 4rem 0; display: flex; justify-content: center;">
+    <div style="background: white; padding: 3rem; border-radius: 1rem; box-shadow: var(--shadow); width: 100%; max-width: 600px;">
+        <h2 style="margin-bottom: 2rem;">Add New Product</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Product Name</label>
+                <input type="text" name="name" required style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem;">
+            </div>
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Category</label>
+                <select name="category_id" required style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem;">
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Price (₹)</label>
+                    <input type="number" step="0.01" name="price" required style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem;">
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Stock</label>
+                    <input type="number" name="stock" required style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem;">
+                </div>
+            </div>
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Description</label>
+                <textarea name="description" rows="4" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem;"></textarea>
+            </div>
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Product Image</label>
+                <input type="file" name="image" accept="image/*" style="width: 100%; padding: 0.75rem; border: 1px dashed #d1d5db; border-radius: 0.5rem;">
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="btn" style="flex: 1;">Add Product</button>
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary" style="flex: 1; text-align: center;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
