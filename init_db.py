@@ -17,12 +17,21 @@ def init_db():
         # Use a nested block or individual commits to avoid autoflush issues
         try:
             # Add Admin User if it doesn't exist
+            print("Checking for admin user...")
             admin = db.session.query(User).filter_by(username='admin').first()
             if not admin:
-                print("Creating admin user...")
+                print("Admin user NOT found. Creating admin user...")
                 admin = User(username='admin', password_hash=generate_password_hash('admin123'), is_admin=True)
                 db.session.add(admin)
                 db.session.commit()
+                print("Admin user created successfully.")
+            else:
+                print("Admin user already exists.")
+                # Ensure existing admin has admin privileges
+                if not admin.is_admin:
+                    print("Updating existing user 'admin' to have admin privileges...")
+                    admin.is_admin = True
+                    db.session.commit()
 
             # Add Categories if they don't exist
             categories_data = [
