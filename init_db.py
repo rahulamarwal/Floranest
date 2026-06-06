@@ -33,9 +33,9 @@ def init_db():
 
             # Add Sample Products
             products_data = [
-                ('Organic Tomato Seeds', 'High-yield organic tomato seeds.', 150.0, 100, 'Seeds'),
-                ('Natural Compost', 'Pure organic compost for soil health.', 500.0, 50, 'Fertilizers'),
-                ('Steel Garden Trowel', 'Rust-resistant steel trowel with wooden handle.', 250.0, 30, 'Tools'),
+                ('Organic Red Mustard Microgreen', 'High-yield organic tomato seeds.', 150.0, 100, 'Seeds'),
+                ('Organic Moong Dal Microgreen', 'Pure organic compost for soil health.', 500.0, 50, 'Fertilizers'),
+                ('Organic Sunflower Microgreen', 'Rust-resistant steel trowel with wooden handle.', 250.0, 30, 'Tools'),
                 ('Fresh Shiitake Mushrooms', 'Premium quality fresh shiitake mushrooms.', 800.0, 20, 'Mushrooms'),
                 ('Aloe Vera Sapling', 'Easy-to-grow aloe vera plant in a small pot.', 120.0, 40, 'Live Plants')
             ]
