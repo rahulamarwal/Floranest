@@ -15,7 +15,6 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 db.init_app(app)
 with app.app_context():
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    db.create_all()
 
 login_manager = LoginManager()
 login_manager.login_view = 'login'
