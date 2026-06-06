@@ -13,6 +13,10 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 
 db.init_app(app)
+with app.app_context():
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+    db.create_all()
+
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
@@ -33,7 +37,7 @@ def inject_globals():
 
 @app.route('/')
 def index():
-    products = Product.query.limit(8).all()
+    products = Product.query.order_by(Product.id.desc()).limit(8).all()
     return render_template('user/index.html', products=products)
 
 @app.route('/category/<int:category_id>')
@@ -97,7 +101,7 @@ def view_cart():
 def admin_dashboard():
     if not current_user.is_admin:
         return redirect(url_for('index'))
-    products = Product.query.all()
+    products = Product.query.order_by(Product.id.desc()).all()
     orders = Order.query.order_by(Order.created_at.desc()).all()
     return render_template('admin/dashboard.html', products=products, orders=orders)
 
@@ -124,6 +128,7 @@ def add_product():
                               stock=stock, category_id=category_id, image_url=image_url)
         db.session.add(new_product)
         db.session.commit()
+        print(f"DEBUG: Created new product {new_product.id}: {name}")
         flash('Product added successfully!')
         return redirect(url_for('admin_dashboard'))
     
@@ -168,7 +173,5 @@ def delete_product(product_id):
     return redirect(url_for('admin_dashboard'))
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     print("Floranest is starting on http://127.0.0.1:5001")
     app.run(debug=True, port=5001)
