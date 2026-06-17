@@ -6,74 +6,54 @@ from sqlalchemy import inspect
 
 def init_db():
     with app.app_context():
-        # Check if tables already exist
-        inspector = inspect(db.engine)
-        if not inspector.has_table("user"):
-            print("Creating database tables...")
-            db.create_all()
-        else:
-            print("Tables already exist. Skipping creation.")
+        # Clean slate: Recreate database to ensure only new categories exist
+        print("Resetting database...")
+        db.drop_all()
+        db.create_all()
+        print("Database tables created.")
 
-        # Use a nested block or individual commits to avoid autoflush issues
         try:
-            # Add Admin User if it doesn't exist
-            print("Checking for admin user...")
-            admin = db.session.query(User).filter_by(username='admin').first()
-            if not admin:
-                print("Admin user NOT found. Creating admin user...")
-                admin = User(username='admin', email='admin@floranest.com', password_hash=generate_password_hash('admin123'), is_admin=True)
-                db.session.add(admin)
-                db.session.commit()
-                print("Admin user created successfully.")
-            else:
-                print("Admin user already exists.")
-                # Ensure existing admin has admin privileges
-                if not admin.is_admin:
-                    print("Updating existing user 'admin' to have admin privileges...")
-                    admin.is_admin = True
-                    db.session.commit()
+            # Add Admin User
+            print("Creating admin user...")
+            admin = User(username='admin', email='admin@floranest.com', password_hash=generate_password_hash('admin123'), is_admin=True)
+            db.session.add(admin)
+            db.session.commit()
+            print("Admin user created successfully.")
 
-            # Add Categories if they don't exist
+            # Add New Categories
             categories_data = [
-                ('Seeds', 'Quality organic seeds for various crops.'),
-                ('Fertilizers', 'Natural and chemical fertilizers to boost yield.'),
-                ('Tools', 'Durable farming and gardening tools.'),
-                ('Mushrooms', 'Fresh and dried gourmet mushrooms.'),
-                ('Live Plants', 'Healthy saplings and decorative plants.')
+                ('Mushrooms', 'Premium gourmet and medicinal mushrooms.'),
+                ('Microgreens', 'Nutrient-rich young vegetable greens.'),
+                ('Exotic Vegetable', 'Rare and specialty vegetables from around the world.'),
+                ('Tools', 'Durable and professional-grade agricultural tools.')
             ]
 
+            category_map = {}
             for name, desc in categories_data:
-                cat = db.session.query(Category).filter_by(name=name).first()
-                if not cat:
-                    print(f"Creating category: {name}")
-                    cat = Category(name=name, description=desc)
-                    db.session.add(cat)
+                print(f"Creating category: {name}")
+                cat = Category(name=name, description=desc)
+                db.session.add(cat)
+                category_map[name] = cat
             db.session.commit()
 
-            # Add Sample Products if none exist
-            if db.session.query(Product).count() == 0:
-                print("Adding sample products...")
-                seeds_cat = db.session.query(Category).filter_by(name='Seeds').first()
-                fert_cat = db.session.query(Category).filter_by(name='Fertilizers').first()
-                tools_cat = db.session.query(Category).filter_by(name='Tools').first()
-                mush_cat = db.session.query(Category).filter_by(name='Mushrooms').first()
-                live_cat = db.session.query(Category).filter_by(name='Live Plants').first()
+            # Add Sample Products
+            print("Adding sample products...")
+            products_data = [
+                ('Fresh Shiitake', 'Premium quality fresh shiitake mushrooms.', 800.0, 20, 'Mushrooms'),
+                ('Oyster Mushroom', 'Delicate and flavorful oyster mushrooms.', 600.0, 15, 'Mushrooms'),
+                ('Radish Microgreens', 'Zesty and colorful radish microgreens.', 350.0, 50, 'Microgreens'),
+                ('Purple Bok Choy', 'Stunning and crunchy exotic bok choy.', 450.0, 25, 'Exotic Vegetable'),
+                ('Precision Pruner', 'High-quality pruner for delicate plants.', 950.0, 10, 'Tools')
+            ]
 
-                products_data = [
-                    ('Organic Tomato Seeds', 'High-yield organic tomato seeds.', 150.0, 100, seeds_cat),
-                    ('Natural Compost', 'Pure organic compost for soil health.', 500.0, 50, fert_cat),
-                    ('Steel Garden Trowel', 'Rust-resistant steel trowel with wooden handle.', 250.0, 30, tools_cat),
-                    ('Fresh Shiitake Mushrooms', 'Premium quality fresh shiitake mushrooms.', 800.0, 20, mush_cat),
-                    ('Aloe Vera Sapling', 'Easy-to-grow aloe vera plant in a small pot.', 120.0, 40, live_cat)
-                ]
+            for name, desc, price, stock, cat_name in products_data:
+                cat = category_map.get(cat_name)
+                if cat:
+                    prod = Product(name=name, description=desc, price=price, stock=stock, category_id=cat.id)
+                    db.session.add(prod)
+            db.session.commit()
 
-                for name, desc, price, stock, cat in products_data:
-                    if cat:
-                        prod = Product(name=name, description=desc, price=price, stock=stock, category_id=cat.id)
-                        db.session.add(prod)
-                db.session.commit()
-
-            print("Database initialization check complete.")
+            print("Database initialization complete.")
         except Exception as e:
             db.session.rollback()
             print(f"Error during initialization: {e}")
