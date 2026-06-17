@@ -112,46 +112,97 @@ nav .container {
     color: var(--accent);
 }
 
-.cart-btn {
-    background: var(--primary);
-    color: white !important;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
+/* --- Liquid Blob Buttons --- */
+.btn-primary, .btn-outline, .cart-btn {
+    position: relative;
+    text-align: center;
     text-transform: uppercase;
     font-size: 0.8rem;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background-color: transparent;
+    border: none;
+    transition: color 0.5s;
+    cursor: pointer;
     z-index: 1;
-    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.cart-btn::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: var(--accent);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
+.btn-primary {
+    color: var(--white) !important;
+    padding: 1.2rem 2.5rem;
+}
+
+.btn-outline {
+    color: var(--primary) !important;
+    padding: 1.2rem 2.5rem;
+}
+
+.btn-outline:hover {
+    color: var(--white) !important;
+}
+
+.cart-btn {
+    color: var(--white) !important;
+    padding: 0.75rem 1.5rem;
+    gap: 0.8rem;
+}
+
+.blob-btn__inner {
     z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
 }
 
-.cart-btn:hover::before {
-    width: 300%;
-    height: 300%;
+/* Background colors for the inner container */
+.btn-primary .blob-btn__inner { background: var(--primary); }
+.btn-outline .blob-btn__inner { background: var(--white); border: 1px solid var(--primary); }
+.cart-btn .blob-btn__inner { background: var(--primary); }
+
+.blob-btn__blobs {
+    position: relative;
+    display: block;
+    height: 100%;
+    filter: url('#goo');
 }
 
-.cart-btn:hover {
-    background: var(--primary);
+.blob-btn__blob {
+    position: absolute;
+    top: 2px;
+    width: 25.5%; /* Slightly more to overlap */
+    height: 100%;
+    border-radius: 100%;
+    transform: translate3d(0, 150%, 0) scale(1.7);
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+/* Blob Colors */
+.btn-primary .blob-btn__blob, .cart-btn .blob-btn__blob { background: var(--accent); }
+.btn-outline .blob-btn__blob { background: var(--primary); }
+
+.blob-btn__blob:nth-child(1) { left: 0%; transition-delay: 0s; }
+.blob-btn__blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
+.blob-btn__blob:nth-child(3) { left: 60%; transition-delay: 0.16s; }
+.blob-btn__blob:nth-child(4) { left: 90%; transition-delay: 0.24s; }
+
+.btn-primary:hover .blob-btn__blob, 
+.btn-outline:hover .blob-btn__blob, 
+.cart-btn:hover .blob-btn__blob {
+    transform: translate3d(0, 0, 0) scale(1.7);
+}
+
+/* Override previous simple animations */
+.btn-primary::before, .btn-outline::before, .cart-btn::before { display: none !important; }
+
 
 /* --- Atmospheric Hero --- */
 .hero {
@@ -227,81 +278,6 @@ nav .container {
     font-weight: 500;
     color: var(--accent);
     margin-bottom: 2rem;
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: white !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-    padding: 1rem 2rem;
-    border-radius: 0;
-    text-decoration: none;
-    display: inline-block;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.btn-primary::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: var(--accent);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
-    z-index: -1;
-}
-
-.btn-primary:hover::before {
-    width: 300%;
-    height: 300%;
-}
-
-.btn-outline {
-    background: transparent;
-    border: 1px solid var(--primary);
-    color: var(--primary) !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-    padding: 1rem 2rem;
-    border-radius: 0;
-    text-decoration: none;
-    display: inline-block;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.btn-outline::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: var(--primary);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
-    z-index: -1;
-}
-
-.btn-outline:hover::before {
-    width: 300%;
-    height: 300%;
-}
-
-.btn-outline:hover {
-    color: white !important;
 }
 
 /* --- Sections inspired by PlanetMushroom --- */

@@ -58,7 +58,17 @@
                 <span>Total</span>
                 <span>₹{{ "%.2f"|format(total) }}</span>
             </div>
-            <button class="btn btn-primary" style="width: 100%; font-size: 1.125rem;">Proceed to Checkout</button>
+            <button class="btn-primary" style="width: 100%; font-size: 1.125rem;">
+                Proceed to Checkout
+                <span class="blob-btn__inner">
+                    <span class="blob-btn__blobs">
+                        <span class="blob-btn__blob"></span>
+                        <span class="blob-btn__blob"></span>
+                        <span class="blob-btn__blob"></span>
+                        <span class="blob-btn__blob"></span>
+                    </span>
+                </span>
+            </button>
             <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--text-light);">
                 <i class="fas fa-lock" style="margin-right: 0.5rem;"></i> Secure Checkout
             </p>
@@ -69,7 +79,17 @@
         <i class="fas fa-shopping-cart" style="font-size: 4rem; color: #e5e7eb; margin-bottom: 2rem;"></i>
         <h2>Your cart is empty</h2>
         <p style="color: var(--text-light); margin-bottom: 2rem;">Looks like you haven't added anything to your cart yet.</p>
-        <a href="{{ url_for('index') }}" class="btn">Start Shopping</a>
+        <a href="{{ url_for('index') }}" class="btn-primary">
+            Start Shopping
+            <span class="blob-btn__inner">
+                <span class="blob-btn__blobs">
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                </span>
+            </span>
+        </a>
     </div>
     {% endif %}
 </section>

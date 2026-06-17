@@ -32,7 +32,17 @@
                 </p>
             </div>
 
-            <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-primary" style="width: 100%; padding: 1.2rem;">Add to Cart</a>
+            <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn-primary" style="width: 100%; padding: 1.2rem;">
+                Add to Cart
+                <span class="blob-btn__inner">
+                    <span class="blob-btn__blobs">
+                        <span class="blob-btn__blob"></span>
+                        <span class="blob-btn__blob"></span>
+                        <span class="blob-btn__blob"></span>
+                        <span class="blob-btn__blob"></span>
+                    </span>
+                </span>
+            </a>
             
             <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; gap: 1rem 3rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
                 <span><i class="fas fa-truck" style="margin-right: 0.5rem;"></i> Fast Delivery</span>

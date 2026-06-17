@@ -31,6 +31,17 @@
         <i class="fas fa-fungus floating-icon"></i>
     </div>
 
+    <!-- Gooey Liquid Filter for Buttons -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+
     <nav>
         <div class="container">
             <a href="{{ url_for('index') }}" class="logo">
@@ -58,8 +69,15 @@
                 {% endif %}
                 <a href="{{ url_for('view_cart') }}" class="cart-btn">
                     <i class="fas fa-shopping-cart"></i>
-                    <span>Cart</span>
-                    <span class="cart-count">{{ cart_count }}</span>
+                    <span>Cart ({{ cart_count }})</span>
+                    <span class="blob-btn__inner">
+                        <span class="blob-btn__blobs">
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                        </span>
+                    </span>
                 </a>
             </div>
         </div>

@@ -35,8 +35,28 @@
                 <h3>{{ product.name }}</h3>
                 <p class="product-price">₹{{ "%.2f"|format(product.price) }}</p>
                 <div style="display: flex; gap: 1rem; margin-top: auto; padding-top: 1rem;">
-                    <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-outline" style="flex: 1; padding: 0.6rem;">Details</a>
-                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-primary" style="flex: 1; padding: 0.6rem;">Add to Cart</a>
+                    <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn-outline" style="flex: 1; padding: 0.6rem;">
+                        Details
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn-primary" style="flex: 1; padding: 0.6rem;">
+                        Add
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>
