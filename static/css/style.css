@@ -161,8 +161,8 @@ nav .container {
 /* --- Boutique Product Grid --- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
     justify-content: center;
     padding: 2rem 0;
 }
