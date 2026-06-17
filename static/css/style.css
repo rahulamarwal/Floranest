@@ -208,23 +208,29 @@ nav .container {
 
 .btn-primary {
     background: var(--primary);
-    color: white;
+    color: white !important;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 0.8rem;
     padding: 1rem 2rem;
     border-radius: 0;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
 }
 
 .btn-outline {
     background: transparent;
     border: 1px solid var(--primary);
-    color: var(--primary);
+    color: var(--primary) !important;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 0.8rem;
     padding: 1rem 2rem;
     border-radius: 0;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
 }
 
 /* --- Sections inspired by PlanetMushroom --- */
