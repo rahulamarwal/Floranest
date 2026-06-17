@@ -137,6 +137,10 @@ nav .container {
     padding: 1.2rem 2.5rem;
 }
 
+.btn-primary:hover {
+    color: var(--primary) !important;
+}
+
 .btn-outline {
     color: var(--primary) !important;
     padding: 1.2rem 2.5rem;
@@ -150,6 +154,10 @@ nav .container {
     color: var(--white) !important;
     padding: 0.75rem 1.5rem;
     gap: 0.8rem;
+}
+
+.cart-btn:hover {
+    color: var(--primary) !important;
 }
 
 .blob-btn__inner {
@@ -186,8 +194,9 @@ nav .container {
 }
 
 /* Blob Colors */
-.btn-primary .blob-btn__blob, .cart-btn .blob-btn__blob { background: var(--accent); }
+.btn-primary .blob-btn__blob { background: var(--white); }
 .btn-outline .blob-btn__blob { background: var(--primary); }
+.cart-btn .blob-btn__blob { background: var(--white); }
 
 .blob-btn__blob:nth-child(1) { left: 0%; transition-delay: 0s; }
 .blob-btn__blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
