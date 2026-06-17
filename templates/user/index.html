@@ -24,9 +24,9 @@
             <div class="product-info">
                 <h3>{{ product.name }}</h3>
                 <p class="product-price">₹{{ "%.2f"|format(product.price) }}</p>
-                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-secondary" style="flex: 1; text-align: center; padding: 0.5rem;">Details</a>
-                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn" style="flex: 1; text-align: center; padding: 0.5rem;">Add to Cart</a>
+                <div style="display: flex; gap: 1rem; margin-top: auto; padding-top: 1rem;">
+                    <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-outline" style="flex: 1; padding: 0.6rem;">Details</a>
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-primary" style="flex: 1; padding: 0.6rem;">Add to Cart</a>
                 </div>
             </div>
         </div>
