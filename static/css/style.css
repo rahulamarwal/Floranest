@@ -244,7 +244,7 @@ nav .container {
 /* --- Boutique Product Grid --- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 400px));
     gap: 2.5rem;
     justify-content: center;
     padding: 2rem 0;
@@ -255,10 +255,67 @@ nav .container {
     padding: 2.5rem;
     transition: var(--transition);
     height: 100%;
+    max-width: 400px; /* Prevent single product from stretching */
     display: flex;
     flex-direction: column;
     text-align: center;
-    border: 1px solid rgba(0,0,0,0.05); /* Subtle border instead of grid background */
+    border: 1px solid rgba(0,0,0,0.05);
+    margin: 0 auto; /* Center when single */
+}
+
+/* --- Shopping Cart Redesign --- */
+.cart-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.cart-table-container {
+    background: var(--white);
+    padding: 2rem;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th {
+    text-align: left;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.cart-table td {
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.02);
+}
+
+.cart-summary {
+    background: var(--white);
+    padding: 3rem;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: sticky;
+    top: 100px;
+}
+
+.cart-summary h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+    .cart-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .product-card:hover {
