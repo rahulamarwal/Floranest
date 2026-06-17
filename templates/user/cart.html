@@ -59,17 +59,19 @@
                 <span>₹{{ "%.2f"|format(total) }}</span>
             </div>
             
-            <button class="btn-primary" style="width: 100%; padding: 1.2rem; margin-bottom: 1rem;">
-                Checkout
-                <span class="blob-btn__inner">
-                    <span class="blob-btn__blobs">
-                        <span class="blob-btn__blob"></span>
-                        <span class="blob-btn__blob"></span>
-                        <span class="blob-btn__blob"></span>
-                        <span class="blob-btn__blob"></span>
+            <form action="{{ url_for('checkout') }}" method="POST">
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 1.2rem; margin-bottom: 1rem;">
+                    Checkout
+                    <span class="blob-btn__inner">
+                        <span class="blob-btn__blobs">
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                        </span>
                     </span>
-                </span>
-            </button>
+                </button>
+            </form>
             <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
                 <i class="fas fa-lock" style="margin-right: 0.5rem;"></i> Secure Encrypted Payment
             </p>

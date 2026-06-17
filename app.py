@@ -207,6 +207,83 @@ def delete_product(product_id):
     flash('Product deleted successfully!')
     return redirect(url_for('admin_dashboard'))
 
+@app.route('/checkout', methods=['POST'])
+@login_required
+def checkout():
+    cart = session.get('cart', {})
+    if not cart:
+        flash('Your cart is empty.')
+        return redirect(url_for('index'))
+
+    cart_items_details = []
+    total = 0
+    order_text = ""
+    
+    for product_id, quantity in cart.items():
+        product = Product.query.get(int(product_id))
+        if product:
+            item_total = product.price * quantity
+            total += item_total
+            cart_items_details.append({
+                'product': product,
+                'quantity': quantity,
+                'item_total': item_total
+            })
+            order_text += f"- {product.name} (Qty: {quantity}) - ₹{item_total:.2f}\n"
+
+    # Create Order in DB
+    new_order = Order(user_id=current_user.id, total_price=total, status='pending')
+    db.session.add(new_order)
+    db.session.flush() # Get order ID before committing items
+
+    for item in cart_items_details:
+        order_item = OrderItem(
+            order_id=new_order.id,
+            product_id=item['product'].id,
+            quantity=item['quantity'],
+            price_at_purchase=item['product'].price
+        )
+        db.session.add(order_item)
+    
+    db.session.commit()
+
+    # Send Email Notification
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
+
+    sender_email = os.environ.get('MAIL_USERNAME')
+    sender_password = os.environ.get('MAIL_PASSWORD')
+    receiver_emails = ["rahulamarwal418@gmail.com", "shubhamamarwal899@gmail.com"]
+    
+    if sender_email and sender_password:
+        message = MIMEMultipart()
+        message["From"] = sender_email
+        message["To"] = ", ".join(receiver_emails)
+        message["Subject"] = f"New Order Request #{new_order.id} - Floranest"
+
+        body = (f"Hello Team,\n\nA new order request has been placed by {current_user.username} ({current_user.email}).\n\n"
+                f"Order Details:\n{order_text}\n"
+                f"Total Price: ₹{total:.2f}\n\n"
+                f"Please get in touch with the customer for fulfillment.")
+        
+        message.attach(MIMEText(body, "plain"))
+
+        try:
+            # Note: For Gmail, you may need an 'App Password'
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, receiver_emails, message.as_string())
+        except Exception as e:
+            print(f"DEBUG: Failed to send email: {e}")
+    else:
+        print("DEBUG: Email credentials not set. Skipping email notification.")
+
+    # Clear Cart
+    session['cart'] = {}
+    flash('Order request received! Our team will get in touch with you shortly.')
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     print("Floranest is starting on http://127.0.0.1:5001")
     app.run(debug=True, port=5001)
