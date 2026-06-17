@@ -13,28 +13,28 @@
             {% endif %}
         </div>
         <div class="product-detail-info">
-            <span style="color: var(--primary-green); font-weight: 600; text-transform: uppercase; font-size: 0.875rem;">{{ product.category.name }}</span>
+            <span style="color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">{{ product.category.name }}</span>
             <h1>{{ product.name }}</h1>
-            <p style="font-size: 1.5rem; color: var(--primary-green); font-weight: 700; margin-bottom: 2rem;">₹{{ "%.2f"|format(product.price) }}</p>
+            <p style="font-size: 2rem; color: var(--accent); font-family: 'Playfair Display', serif; font-weight: 700; margin-bottom: 2rem;">₹{{ "%.2f"|format(product.price) }}</p>
             
             <div style="margin-bottom: 2rem;">
-                <h3 style="margin-bottom: 0.5rem;">Description</h3>
-                <p style="color: var(--text-light);">{{ product.description }}</p>
+                <h3>Description</h3>
+                <p style="color: var(--text-muted);">{{ product.description }}</p>
             </div>
 
             <div style="margin-bottom: 2rem;">
-                <p style="font-weight: 500;">Status: 
+                <p style="font-weight: 500; font-size: 0.9rem;">STATUS: 
                     {% if product.stock > 0 %}
-                    <span style="color: #059669;">In Stock ({{ product.stock }} available)</span>
+                    <span style="color: var(--success);">IN STOCK ({{ product.stock }} AVAILABLE)</span>
                     {% else %}
-                    <span style="color: #dc2626;">Out of Stock</span>
+                    <span style="color: var(--error);">OUT OF STOCK</span>
                     {% endif %}
                 </p>
             </div>
 
-            <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-primary" style="width: 100%; font-size: 1.125rem;">Add to Cart</a>
+            <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-primary" style="width: 100%; padding: 1.2rem;">Add to Cart</a>
             
-            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f3f4f6; display: flex; flex-wrap: wrap; gap: 1rem 2rem; color: var(--text-light); font-size: 0.875rem;">
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; gap: 1rem 3rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
                 <span><i class="fas fa-truck" style="margin-right: 0.5rem;"></i> Fast Delivery</span>
                 <span><i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i> Secure Payment</span>
             </div>
