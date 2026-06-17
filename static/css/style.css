@@ -1,22 +1,22 @@
 :root {
-    /* Modern Nature Palette */
-    --primary: #1a4d2e;         /* Deep Forest Green */
-    --primary-light: #4f6f52;   /* Sage Green */
-    --secondary: #f5e8c7;       /* Soft Sand */
-    --accent: #d4a373;          /* Earthy Terracotta */
-    --bg-main: #fbfada;         /* Very Light Cream */
+    /* Boutique Earthy Palette inspired by PlanetMushroom */
+    --primary: #2C3328;         /* Deep Moss Green */
+    --primary-light: #5B6354;   /* Olive Muted Green */
+    --secondary: #E9E2D8;       /* Warm Mushroom Cream/Taupe */
+    --accent: #8D775F;          /* Earthy Brown */
+    --bg-main: #F4F1ED;         /* Soft Sandstone */
     --white: #ffffff;
-    --text-main: #12372a;       /* Darkest Green for Text */
-    --text-muted: #436850;      /* Muted Green-Grey */
-    --success: #059669;
-    --error: #dc2626;
+    --text-main: #2D2A26;       /* Near Black Coffee */
+    --text-muted: #6B665F;      /* Dusty Soil */
+    --success: #3D5233;
+    --error: #A63D40;
     
     /* UI Constants */
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-    --radius: 12px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-sm: 0 2px 4px rgba(44, 51, 40, 0.05);
+    --shadow-md: 0 10px 20px -5px rgba(44, 51, 40, 0.1);
+    --shadow-lg: 0 20px 40px -10px rgba(44, 51, 40, 0.15);
+    --radius: 4px; /* Sharper, more boutique corners */
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 * {
@@ -26,265 +26,298 @@
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
 }
 
-/* --- Refined Typography --- */
-h1, h2, h3, h4 {
+/* --- Boutique Typography --- */
+h1, h2, h3, .serif {
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--primary);
 }
 
-/* --- Glassmorphic Navbar --- */
+/* --- Minimalist Navbar --- */
 nav {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 0.75rem 0;
+    background: var(--white);
+    padding: 1.5rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(26, 77, 46, 0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    font-size: 1.4rem;
-    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
     color: var(--primary);
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    letter-spacing: 1px;
 }
 
-.logo::before {
-    content: '🌱';
-    font-size: 1.2rem;
+.mobile-menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-muted);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 8px;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.5rem 0.5rem;
     transition: var(--transition);
 }
 
 .nav-links a:hover {
-    color: var(--primary);
-    background: rgba(79, 111, 82, 0.1);
+    color: var(--accent);
 }
 
 .cart-btn {
     background: var(--primary);
     color: white !important;
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0; /* Square boutique buttons */
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    box-shadow: 0 4px 12px rgba(26, 77, 46, 0.2);
+    gap: 0.8rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
 }
 
 .cart-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(26, 77, 46, 0.3);
-    background: var(--primary-light);
+    background: var(--accent);
 }
 
-/* --- Professional Hero --- */
+/* --- Atmospheric Hero --- */
 .hero {
-    background: linear-gradient(135deg, rgba(18, 55, 42, 0.85), rgba(79, 111, 82, 0.7)), 
-                url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1600');
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&q=80&w=1600');
     background-size: cover;
     background-position: center;
     color: var(--white);
-    padding: 8rem 0;
+    padding: 12rem 0;
     text-align: center;
-    border-radius: 0 0 40px 40px;
-    margin-bottom: 4rem;
+    margin-bottom: 0;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
+    color: var(--white);
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    font-style: italic;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto 2.5rem;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     opacity: 0.9;
 }
 
-/* --- Modern Product Cards --- */
+/* --- Boutique Product Grid --- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2.5rem;
-    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0; /* Grid style with borders */
+    background: #ccc;
+    border: 1px solid #ccc;
 }
 
 .product-card {
     background: var(--white);
-    border-radius: var(--radius);
-    padding: 12px;
-    border: 1px solid rgba(0,0,0,0.05);
+    padding: 2.5rem;
     transition: var(--transition);
     height: 100%;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--primary-light);
+    background: var(--secondary);
 }
 
 .product-image {
     width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-}
-
-.product-info {
-    padding: 0.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    height: 300px;
+    object-fit: contain; /* Professional product photography look */
+    margin-bottom: 2rem;
+    mix-blend-mode: multiply; /* Works well for white background products */
 }
 
 .product-info h3 {
-    font-size: 1.2rem;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .product-price {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-}
-
-.btn {
-    padding: 0.8rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 700;
-    text-align: center;
-    transition: var(--transition);
-    cursor: pointer;
-    border: none;
-    font-size: 0.95rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 2rem;
 }
 
 .btn-primary {
     background: var(--primary);
     color: white;
-}
-
-.btn-primary:hover {
-    background: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    padding: 1rem 2rem;
+    border-radius: 0;
 }
 
 .btn-outline {
     background: transparent;
-    border: 2px solid var(--primary);
+    border: 1px solid var(--primary);
     color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    padding: 1rem 2rem;
+    border-radius: 0;
 }
 
-.btn-outline:hover {
-    background: var(--primary);
-    color: white;
-}
-
-/* --- Animated Flash Messages --- */
-.flash {
+/* --- Sections inspired by PlanetMushroom --- */
+.story-section {
+    padding: 8rem 0;
     background: var(--white);
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow-lg);
-    border-left: 5px solid var(--primary);
-    animation: slideIn 0.4s ease-out;
+    text-align: center;
 }
 
-@keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+.story-section .serif-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
 }
 
-/* --- Mobile Menu Improvements --- */
-@media (max-width: 768px) {
-    .nav-links {
-        border-radius: 0 0 20px 20px;
-        padding: 2rem;
-    }
-    
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-    
-    .product-grid {
-        gap: 1.5rem;
-    }
+.story-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-muted);
 }
 
-/* --- Footer Refinement --- */
+/* --- Footer --- */
 footer {
     background: var(--primary);
     color: var(--white);
-    padding: 5rem 0 2rem;
+    padding: 6rem 0 3rem;
     margin-top: 6rem;
 }
 
 footer h4 {
-    color: var(--secondary);
-    margin-bottom: 1.5rem;
-    font-size: 1.2rem;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+    display: inline-block;
 }
 
-footer p, footer a {
-    color: rgba(255,255,255,0.7);
+footer p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 0.8rem;
+}
+
+footer a {
+    color: rgba(255,255,255,0.6) !important;
     text-decoration: none;
+    font-size: 0.9rem;
     transition: var(--transition);
+    display: inline-block;
 }
 
 footer a:hover {
-    color: var(--white);
-    padding-left: 5px;
+    color: var(--secondary) !important;
+    transform: translateX(5px);
 }
 
-/* Keep previous responsive layout logic but update aesthetics */
-.product-detail-grid {
-    background: var(--white);
-    border: 1px solid rgba(0,0,0,0.05);
-    padding: 4rem;
+.footer-bottom {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.cart-table-container {
-    border: 1px solid rgba(0,0,0,0.05);
-}
 
-.cart-table th {
-    background: var(--secondary);
-    color: var(--primary);
-    font-weight: 700;
+/* Keep responsive logic but update for new styles */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block; /* Show hamburger only on mobile */
+    }
+
+    .nav-links {
+        display: none; /* Hidden on mobile until toggled */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        box-shadow: var(--shadow-md);
+        border-top: 1px solid var(--bg-main);
+    }
+
+    .nav-links.active {
+        display: flex; /* Shown when toggle is clicked */
+    }
+
+    .hero h1 { font-size: 2.8rem; }
+    .hero { padding: 8rem 0; }
+    .product-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 1.5rem; }
 }
