@@ -20,11 +20,11 @@ def init_db():
             db.session.commit()
             print("Admin user created successfully.")
 
-            # Add New Categories
+            # Add New Categories in specific order
             categories_data = [
-                ('Mushrooms', 'Premium gourmet and medicinal mushrooms.'),
                 ('Microgreens', 'Nutrient-rich young vegetable greens.'),
-                ('Exotic Vegetable', 'Rare and specialty vegetables from around the world.'),
+                ('Exotic Vegetables', 'Rare and specialty vegetables from around the world.'),
+                ('Mushrooms', 'Premium gourmet and medicinal mushrooms.'),
                 ('Tools', 'Durable and professional-grade agricultural tools.')
             ]
 
@@ -39,10 +39,10 @@ def init_db():
             # Add Sample Products
             print("Adding sample products...")
             products_data = [
+                ('Radish Microgreens', 'Zesty and colorful radish microgreens.', 350.0, 50, 'Microgreens'),
+                ('Purple Bok Choy', 'Stunning and crunchy exotic bok choy.', 450.0, 25, 'Exotic Vegetables'),
                 ('Fresh Shiitake', 'Premium quality fresh shiitake mushrooms.', 800.0, 20, 'Mushrooms'),
                 ('Oyster Mushroom', 'Delicate and flavorful oyster mushrooms.', 600.0, 15, 'Mushrooms'),
-                ('Radish Microgreens', 'Zesty and colorful radish microgreens.', 350.0, 50, 'Microgreens'),
-                ('Purple Bok Choy', 'Stunning and crunchy exotic bok choy.', 450.0, 25, 'Exotic Vegetable'),
                 ('Precision Pruner', 'High-quality pruner for delicate plants.', 950.0, 10, 'Tools')
             ]
 
