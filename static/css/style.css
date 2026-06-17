@@ -172,9 +172,9 @@ nav .container {
 }
 
 /* Background colors for the inner container */
-.btn-primary .blob-btn__inner { background: var(--primary); }
+.btn-primary .blob-btn__inner { background: var(--primary); border: 1px solid var(--primary); }
 .btn-outline .blob-btn__inner { background: var(--white); border: 1px solid var(--primary); }
-.cart-btn .blob-btn__inner { background: var(--primary); }
+.cart-btn .blob-btn__inner { background: var(--primary); border: 1px solid var(--primary); }
 
 .blob-btn__blobs {
     position: relative;
