@@ -228,6 +228,10 @@ nav .container {
 }
 
 /* --- Sections inspired by PlanetMushroom --- */
+.page-section {
+    padding: 8rem 0;
+}
+
 .story-section {
     padding: 8rem 0;
     background: var(--white);
