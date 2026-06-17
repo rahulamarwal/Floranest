@@ -3,18 +3,18 @@
 {% block title %}{{ product.name }} - Floranest{% endblock %}
 
 {% block content %}
-<section class="container" style="padding: 4rem 0;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: white; padding: 3rem; border-radius: 1rem; box-shadow: var(--shadow);">
+<section class="container page-section">
+    <div class="product-detail-grid">
         <div>
             {% if product.image_url %}
-            <img src="{{ url_for('static', filename='uploads/' + product.image_url) }}" alt="{{ product.name }}" style="width: 100%; border-radius: 0.5rem; box-shadow: var(--shadow);">
+            <img src="{{ url_for('static', filename='uploads/' + product.image_url) }}" alt="{{ product.name }}" class="product-detail-image">
             {% else %}
-            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Default Product" style="width: 100%; border-radius: 0.5rem;">
+            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Default Product" class="product-detail-image">
             {% endif %}
         </div>
-        <div>
+        <div class="product-detail-info">
             <span style="color: var(--primary-green); font-weight: 600; text-transform: uppercase; font-size: 0.875rem;">{{ product.category.name }}</span>
-            <h1 style="margin: 0.5rem 0 1.5rem 0; font-size: 2.5rem;">{{ product.name }}</h1>
+            <h1>{{ product.name }}</h1>
             <p style="font-size: 1.5rem; color: var(--primary-green); font-weight: 700; margin-bottom: 2rem;">₹{{ "%.2f"|format(product.price) }}</p>
             
             <div style="margin-bottom: 2rem;">
@@ -34,7 +34,7 @@
 
             <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn" style="width: 100%; text-align: center; font-size: 1.125rem;">Add to Cart</a>
             
-            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f3f4f6; display: flex; gap: 2rem; color: var(--text-light); font-size: 0.875rem;">
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f3f4f6; display: flex; flex-wrap: wrap; gap: 1rem 2rem; color: var(--text-light); font-size: 0.875rem;">
                 <span><i class="fas fa-truck" style="margin-right: 0.5rem;"></i> Fast Delivery</span>
                 <span><i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i> Secure Payment</span>
             </div>

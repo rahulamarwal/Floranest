@@ -3,25 +3,25 @@
 {% block title %}Your Cart - Floranest{% endblock %}
 
 {% block content %}
-<section class="container" style="padding: 4rem 0;">
+<section class="container page-section">
     <h1 style="margin-bottom: 3rem;">Shopping Cart</h1>
 
     {% if cart_items %}
-    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
-        <div style="background: white; border-radius: 1rem; box-shadow: var(--shadow); overflow: hidden;">
-            <table style="width: 100%; border-collapse: collapse;">
-                <thead style="background: var(--light-green);">
+    <div class="cart-grid">
+        <div class="cart-table-container">
+            <table class="cart-table">
+                <thead>
                     <tr>
-                        <th style="padding: 1.5rem; text-align: left;">Product</th>
-                        <th style="padding: 1.5rem; text-align: left;">Price</th>
-                        <th style="padding: 1.5rem; text-align: left;">Quantity</th>
-                        <th style="padding: 1.5rem; text-align: left;">Total</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in cart_items %}
-                    <tr style="border-top: 1px solid #f3f4f6;">
-                        <td style="padding: 1.5rem;">
+                    <tr>
+                        <td>
                             <div style="display: flex; align-items: center; gap: 1rem;">
                                 {% if item.product.image_url %}
                                 <img src="{{ url_for('static', filename='uploads/' + item.product.image_url) }}" style="width: 60px; height: 60px; border-radius: 4px; object-fit: cover;">
@@ -34,16 +34,16 @@
                                 </div>
                             </div>
                         </td>
-                        <td style="padding: 1.5rem;">₹{{ "%.2f"|format(item.product.price) }}</td>
-                        <td style="padding: 1.5rem;">{{ item.quantity }}</td>
-                        <td style="padding: 1.5rem; font-weight: 600;">₹{{ "%.2f"|format(item.item_total) }}</td>
+                        <td>₹{{ "%.2f"|format(item.product.price) }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td style="font-weight: 600;">₹{{ "%.2f"|format(item.item_total) }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
 
-        <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow); height: fit-content;">
+        <div class="cart-summary">
             <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
             <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                 <span>Subtotal</span>
