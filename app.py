@@ -54,13 +54,27 @@ def product_detail(product_id):
 def register():
     if request.method == 'POST':
         username = request.form.get('username')
+        email = request.form.get('email')
         password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
         
+        if password != confirm_password:
+            flash('Passwords do not match')
+            return redirect(url_for('register'))
+            
         if User.query.filter_by(username=username).first():
             flash('Username already exists')
             return redirect(url_for('register'))
             
-        new_user = User(username=username, password_hash=generate_password_hash(password))
+        if User.query.filter_by(email=email).first():
+            flash('Email already registered')
+            return redirect(url_for('register'))
+            
+        new_user = User(
+            username=username, 
+            email=email,
+            password_hash=generate_password_hash(password)
+        )
         db.session.add(new_user)
         db.session.commit()
         

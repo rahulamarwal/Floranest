@@ -21,7 +21,7 @@ def init_db():
             admin = db.session.query(User).filter_by(username='admin').first()
             if not admin:
                 print("Admin user NOT found. Creating admin user...")
-                admin = User(username='admin', password_hash=generate_password_hash('admin123'), is_admin=True)
+                admin = User(username='admin', email='admin@floranest.com', password_hash=generate_password_hash('admin123'), is_admin=True)
                 db.session.add(admin)
                 db.session.commit()
                 print("Admin user created successfully.")

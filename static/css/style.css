@@ -153,10 +153,10 @@ nav .container {
 /* --- Boutique Product Grid --- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 0; /* Grid style with borders */
-    background: #ccc;
-    border: 1px solid #ccc;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem 0;
 }
 
 .product-card {
@@ -167,10 +167,14 @@ nav .container {
     display: flex;
     flex-direction: column;
     text-align: center;
+    border: 1px solid rgba(0,0,0,0.05); /* Subtle border instead of grid background */
 }
 
 .product-card:hover {
-    background: var(--secondary);
+    background: var(--white);
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
 .product-image {
@@ -292,6 +296,123 @@ footer a:hover {
 }
 
 
+/* --- Flash Messages --- */
+.flash-messages {
+    position: fixed;
+    top: 6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    width: 100%;
+    max-width: 400px;
+    padding: 0 1rem;
+}
+
+.flash {
+    background: var(--primary);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--accent);
+}
+
+
+/* --- Authentication Pages --- */
+.auth-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
+
+.auth-card {
+    background: var(--white);
+    padding: 4rem;
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.auth-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.auth-card p.subtitle {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--bg-main);
+}
+
+.auth-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    color: var(--accent);
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
+    border: none;
+    cursor: pointer;
+}
+
+
+body.menu-open {
+    overflow: hidden;
+}
+
 /* Keep responsive logic but update for new styles */
 @media (max-width: 768px) {
     .mobile-menu-toggle {
@@ -310,6 +431,8 @@ footer a:hover {
         gap: 1.5rem;
         box-shadow: var(--shadow-md);
         border-top: 1px solid var(--bg-main);
+        max-height: calc(100vh - 80px); /* Ensure menu fits on screen */
+        overflow-y: auto; /* Allow menu itself to scroll if items are too many */
     }
 
     .nav-links.active {

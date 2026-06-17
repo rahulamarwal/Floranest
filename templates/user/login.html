@@ -3,26 +3,28 @@
 {% block title %}Login - Floranest{% endblock %}
 
 {% block content %}
-<section class="auth-wrapper">
-    <div class="auth-container">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Welcome Back</h2>
+<section class="auth-section">
+    <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Access your botanical collection</p>
+        
         <form method="POST">
             <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" required class="form-control">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required class="form-control" placeholder="Enter your username">
             </div>
-            <div class="form-group" style="margin-bottom: 2rem;">
-                <label>Password</label>
-                <input type="password" name="password" required class="form-control">
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required class="form-control" placeholder="Enter your password">
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+            
+            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 2rem;">Sign In</button>
         </form>
-        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-light); font-size: 0.875rem;">
-            Don't have an account? <a href="{{ url_for('register') }}" style="color: var(--primary-green); font-weight: 600;">Register here</a>
-        </p>
-        <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.75rem;">
-            Admin credentials: admin / admin123
-        </p>
+        
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="{{ url_for('register') }}">Create one</a></p>
+            <p style="margin-top: 1.5rem; font-size: 0.75rem; opacity: 0.7;">Demo Admin: admin / admin123</p>
+        </div>
     </div>
 </section>
 {% endblock %}
