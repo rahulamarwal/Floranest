@@ -9,7 +9,10 @@ from models import db, User, Category, Product, Order, OrderItem
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'floranest-dev-key')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///floranest.db').replace("postgres://", "postgresql://")
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
+
+# Use absolute path for upload folder
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['UPLOAD_FOLDER'] = os.path.join(basedir, 'static', 'uploads')
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 
 db.init_app(app)
