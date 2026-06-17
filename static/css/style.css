@@ -65,12 +65,20 @@ nav .container {
 }
 
 .logo {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Georgia', serif;
     font-size: 1.8rem;
     font-weight: 900;
-    color: var(--primary);
+    color: var(--primary) !important; /* Force visibility */
     text-decoration: none;
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo i {
+    color: var(--accent);
+    font-size: 1.5rem;
 }
 
 .mobile-menu-toggle {
